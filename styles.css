@@ -227,8 +227,8 @@ body.dialog-open { overflow: hidden; }
 .photo-open .image-action { right: .6rem; bottom: .6rem; display: grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border-radius: 50%; pointer-events: none; }
 .photo-view-icon svg { display: block; width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .photo-open:hover .image-action, .photo-open:focus-visible .image-action { opacity: 1; transform: none; }
-.video-project { margin: 0; }
-.video-project + .video-project { margin-top: 3rem; }
+.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2.2rem; align-items: start; }
+.video-project { margin: 0; min-width: 0; }
 .video-frame { position: relative; overflow: hidden; border-radius: .9rem; background: #1d241a; }
 .video-frame img { display: block; width: 100%; height: auto; aspect-ratio: auto; object-fit: cover; }
 .video-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(3.5rem, 7vw, 5rem); aspect-ratio: 1; border: 1px solid var(--paper); border-radius: 50%; background: rgb(29 36 26 / .55); color: var(--paper); pointer-events: none; transition: background .2s; }
@@ -242,6 +242,11 @@ body.dialog-open { overflow: hidden; }
 .video-caption h3 { font: 400 clamp(2rem, 4vw, 3.3rem)/1.1 var(--serif); letter-spacing: -.04em; margin: .6rem 0 .35rem; }
 .video-caption p, .video-duration { color: var(--muted); font-size: .875rem; }
 .video-duration { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+@media (min-width: 601px) {
+  .video-grid .video-frame { aspect-ratio: 16/9; }
+  .video-grid .video-frame img { height: 100%; object-fit: contain; }
+  .video-caption h3 { font-size: 1.7rem; }
+}
 .photo-dialog { width: min(88rem, 96vw); height: min(58rem, 94dvh); max-height: 94dvh; }
 .photo-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
 .photo-dialog .dialog-top { padding: .9rem 1.5rem; position: static; }
@@ -266,6 +271,7 @@ body.dialog-open { overflow: hidden; }
   .collection-meta { align-items: start; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
   .photo-open { border-radius: .5rem; }
   .photo-open .image-action { right: .4rem; bottom: .4rem; width: 1.75rem; height: 1.75rem; }
+  .video-grid { grid-template-columns: minmax(0, 1fr); }
   .video-frame { border-radius: .6rem; }
   .video-caption { padding-top: 1rem; gap: 1rem; }
   .photo-dialog .dialog-top { padding: .8rem 1rem; }
